@@ -1,5 +1,5 @@
-import cv2 
-from cvzone.HandTrackingModule import HandDetector
+import cv2 # pip install opencv-python
+from cvzone.HandTrackingModule import HandDetector   # you will install cvzone by pip3 install cvzone and mediapipe by pip3 install mediapipe
 
 cap = cv2.VideoCapture(0)
 detector = HandDetector(detectionCon=0.8, maxHands=2)
@@ -24,7 +24,8 @@ while True:
         #print(handType1) # hand type
 
         fingers1  = detector.fingersUp(hand1)
-        #length, info, img = detector.findDistance(lmList1[8],lmList1[12],img)
+        #length, info, img = detector.findDistance(lmList1[8],lmList1[12],img) # with draw
+        #length, info = detector.findDistance(lmList[8], lmList1[12])  # no draw
 
 
 
