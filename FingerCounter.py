@@ -5,7 +5,7 @@ import os
 import HandTrackingModule as htm
 
 
-wCam, hCam = 720, 640
+wCam, hCam = 640, 480
 
 cap = cv2.VideoCapture(0)
 cap.set(3, wCam)
@@ -25,7 +25,7 @@ pTime = 0
 
 detector = htm.handDetector(detectionCon=0.75)
 
-
+tipIds = [4, 8, 12, 16, 20]
 
 while True:
     success, img = cap.read()
@@ -34,15 +34,29 @@ while True:
     # print(lmList) 
 
     if len(lmList) != 0:
+        fingers = []
 
-        if lmList[8][2] < lmList[6][2]:
-            print("Index Finger open")
-            
+        # Thumb
+        if lmList[tipIds[0]][1] > lmList[tipIds[0] - 1][1]:
+            fingers.append(1)
+        else:
+            fingers.append(0)
+ 
+        # 4 Fingers
+        for id in range(1, 5):
+            if lmList[tipIds[id]][2] < lmList[tipIds[id] - 2][2]:  # if the tip is below the middle
+                fingers.append(1)
+            else:
+                fingers.append(0)
+ 
+        # print(fingers)
+        totalFingers = fingers.count(1)               # Count the number of 1's in the list 
+        print(totalFingers)                           # Print the number of fingers
 
 
 
-    h,w,c = overlaylist[0].shape
-    img[0:h, 0:w] = overlaylist[0]
+        h,w,c = overlaylist[totalFingers-1].shape
+        img[0:h, 0:w] = overlaylist[totalFingers-1]
 
     cTime = time.time()
     fps = 1 / (cTime - pTime)
