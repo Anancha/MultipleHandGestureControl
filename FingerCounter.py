@@ -5,7 +5,7 @@ import os
 import HandTrackingModule as htm  # Hand Tracking Module 
 
 
-wCam, hCam = 640, 480
+wCam, hCam = 1080, 720
 
 cap = cv2.VideoCapture(0)
 cap.set(3, wCam)
@@ -58,7 +58,7 @@ while True:
         h,w,c = overlaylist[totalFingers-1].shape
         img[0:h, 0:w] = overlaylist[totalFingers-1]
 
-        cv2.rectangle(img, (20, 225), (170, 525), (0, 255, 0), cv2.FILLED)
+        cv2.rectangle(img, (20, 325), (200, 525), (0, 255, 0), cv2.FILLED)  # Draw a green rectangle to show the number area 
         cv2.putText(img, str(totalFingers), (45, 445), cv2.FONT_HERSHEY_PLAIN,   # text position 
                     10, (255, 0, 0), 25)
 
@@ -66,7 +66,8 @@ while True:
     fps = 1 / (cTime - pTime)
     pTime = cTime
 
-    cv2.putText(img, f'FPS: {int(fps)}', (400, 70), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
+    cv2.putText(img, f'FPS: {int(fps)}', (600, 70), cv2.FONT_HERSHEY_PLAIN, 3, (0, 255, 0), 3)  
+    # show FPS as text by Color and  position of text (600,70)
     
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
