@@ -59,7 +59,7 @@ while True:
         img[0:h, 0:w] = overlaylist[totalFingers-1]
 
         cv2.rectangle(img, (20, 225), (170, 525), (0, 255, 0), cv2.FILLED)
-        cv2.putText(img, str(totalFingers), (45, 445), cv2.FONT_HERSHEY_PLAIN,
+        cv2.putText(img, str(totalFingers), (45, 445), cv2.FONT_HERSHEY_PLAIN,   # text position 
                     10, (255, 0, 0), 25)
 
     cTime = time.time()
