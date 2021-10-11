@@ -2,7 +2,7 @@
 import cv2
 import time
 import os
-import HandTrackingModule as htm
+import HandTrackingModule as htm  # Hand Tracking Module 
 
 
 wCam, hCam = 640, 480
@@ -46,7 +46,7 @@ while True:
         for id in range(1, 5):
             if lmList[tipIds[id]][2] < lmList[tipIds[id] - 2][2]:  # if the tip is below the middle
                 fingers.append(1)
-            else:
+            else:    
                 fingers.append(0)
  
         # print(fingers)
@@ -57,6 +57,10 @@ while True:
 
         h,w,c = overlaylist[totalFingers-1].shape
         img[0:h, 0:w] = overlaylist[totalFingers-1]
+
+        cv2.rectangle(img, (20, 225), (170, 525), (0, 255, 0), cv2.FILLED)
+        cv2.putText(img, str(totalFingers), (45, 445), cv2.FONT_HERSHEY_PLAIN,
+                    10, (255, 0, 0), 25)
 
     cTime = time.time()
     fps = 1 / (cTime - pTime)
