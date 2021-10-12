@@ -11,6 +11,7 @@ cap = cv2.VideoCapture(0)
 cap.set(3, wCam)
 cap.set(4, hCam)
 
+
 folderPath = "FingerImages"
 myList = os.listdir(folderPath)
 print(myList)
