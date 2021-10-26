@@ -8,7 +8,7 @@ from comtypes import CLSCTX_ALL
 from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
  
 ################################
-wCam, hCam = 640, 480
+wCam, hCam = 1080, 720
 ################################
  
 cap = cv2.VideoCapture(0)
