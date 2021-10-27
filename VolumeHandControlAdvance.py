@@ -1,7 +1,7 @@
 import cv2
 import time
 import numpy as np
-import HandTrackingModule_1 as htm
+import HandTrackingModule as htm
 import math
 from ctypes import cast, POINTER
 from comtypes import CLSCTX_ALL
@@ -34,25 +34,23 @@ area = 0
 colorVol = (255, 0, 0)
 
 while True:
-    success, img = cap.read()
+    success,img = cap.read()
 
     # Find Hand
     img = detector.findHands(img)
     lmList, bbox = detector.findPosition(img, draw=True)
     if len(lmList) != 0:
-
-          # if len(lmList) != 0:
-
-    # Filter based on size
-        area = (bbox[2] - bbox[0]) * (bbox[3] - bbox[1]) // 100
+         # Filter based on size
+        area = (bbox[2] - bbox[0]) * (bbox[3] - bbox[1]) // 100       
+      
         # print(area)
-    if 250 < area < 1000:    # &amp;lt;  มันคือ < 
-
-            # Find Distance between index and Thumb
+    if 250 < area < 1000:
+         
+        # Find Distance between index and Thumb
         length, img, lineInfo = detector.findDistance(4, 8, img)
-            # print(length)
+        # print(length)
 
-            # Convert Volume
+         # Convert Volume
         volBar = np.interp(length, [50, 200], [400, 150])
         volPer = np.interp(length, [50, 200], [0, 100])
 
@@ -70,7 +68,7 @@ while True:
         cv2.circle(img, (lineInfo[4], lineInfo[5]), 15, (0, 255, 0), cv2.FILLED)
         colorVol = (0, 255, 0)
     else:
-         colorVol = (255, 0, 0)
+        colorVol = (255, 0, 0)
 
     # Drawings
     cv2.rectangle(img, (50, 150), (85, 400), (255, 0, 0), 3)
