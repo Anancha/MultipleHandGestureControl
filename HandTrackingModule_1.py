@@ -62,7 +62,7 @@ class handDetector():
                     cv2.rectangle(img, (bbox[0] - 20, bbox[1] - 20),
                     (bbox[2] + 20, bbox[3] + 20), (0, 255, 0), 2)
 
-        return self.lmList, bbox
+                    return self.lmList, bbox
 
     def fingersUp(self):
         fingers = []
