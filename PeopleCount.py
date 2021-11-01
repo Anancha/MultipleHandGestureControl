@@ -20,7 +20,7 @@ def detect(frame):
  
 def detectByPathVideo(path, writer):
  
-    video = cv2.VideoCapture(path)
+    video = cv2.VideoCapture('Video/example_01.mp4')
     check, frame = video.read()
     if check == False:
         print('Video Not Found. Please Enter a Valid Path (Full path of Video Should be Provided).')
