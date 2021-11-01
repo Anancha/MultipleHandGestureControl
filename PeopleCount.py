@@ -1,5 +1,5 @@
 import cv2
-import imutils
+import imutils       # package imports
 import numpy as np
 import argparse
 #frame
