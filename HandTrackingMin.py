@@ -21,7 +21,12 @@ while (True):
 
     if results.multi_hand_landmarks:
         for handLms in results.multi_hand_landmarks:
-            mpDraw.draw_landmarks(img,handLms,mpHands.HAND_CONNECTIONS)
+            for id, lm in enumerate(handLms.landmark):
+                print(id, lm)
+            
+            mpDraw.draw_landmarks(img, handLms, mpHands.HAND_CONNECTIONS)
+                
+                
             
     cTime = time.time()
     fps = 1/(cTime - pTime)
@@ -33,5 +38,7 @@ while (True):
 
     cv2.imshow('Image',img)
     cv2.waitKey(1)
+
+
 if __name__ == "__main__":
     main()
